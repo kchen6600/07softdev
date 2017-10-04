@@ -21,20 +21,16 @@ def resp():
 			return render_template("response1.html", text = "Bad username!")
 	elif request.form["username"] != 'user':
 		if request.form["password"] != 'pass':
-			session['name'] = 'user'
 			return render_template("response1.html", text = "Username and password not recognized")
-	else:
-		return render_template("welcome.html")
+	elif request.form["username"] == 'user':
+		if request.form['password'] == 'pass':
+			session['name'] = 'user'
+			return render_template("welcome.html")
 
 @my_app.route("/logout")
 def logout():
 	session.clear()
 	return render_template('login.html')	
-	#user = 'Batman'
-	#if request.method == 'POST':
-		#user = reguest.form['data']
-	#else:
-		#user = request.args['data']
 
 if __name__ == '__main__':
 	my_app.debug = True
