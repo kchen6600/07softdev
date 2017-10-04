@@ -22,10 +22,8 @@ def resp():
 	elif request.form["username"] != 'user':
 		if request.form["password"] != 'pass':
 			return render_template("response1.html", text = "Username and password not recognized")
-	elif request.form["username"] == 'user':
-		if request.form['password'] == 'pass':
-			session['name'] = 'user'
-			return render_template("welcome.html")
+	session['name'] = "user"
+	return render_template("welcome.html", text = session['name'])
 
 @my_app.route("/logout")
 def logout():
